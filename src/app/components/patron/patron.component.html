@@ -1,0 +1,22 @@
+<table class="table table-bordered border-primary">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of patrons">
+      <th>{{p.id}}</th>
+      <th>{{p.name}}</th>
+      <th>{{p.phone}}</th>
+      <th>
+        <button class="btn btn-primary" >Editar</button>
+        <button class="btn btn-danger">Eliminar</button>
+      </th>
+    </tr>
+
+  </tbody>
+</table>
