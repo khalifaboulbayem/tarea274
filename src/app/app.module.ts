@@ -5,20 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { PatronComponent } from './components/patron/patron.component';
+import { DataModule } from '@data/data.module';
+import { PatronModule } from '@modules/patron/patron.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    PatronComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DataModule,
+    PatronModule
   ],
-  providers: [],
+
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

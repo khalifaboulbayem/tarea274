@@ -1,3 +1,5 @@
+<a [routerLink]="['/patrones/nuevo']" class="btn btn-success">Añadir Patron</a>
+
 <table class="table table-bordered border-primary">
   <thead>
     <tr>
@@ -12,10 +14,11 @@
       <th>{{p.id}}</th>
       <th>{{p.name}}</th>
       <th>{{p.phone}}</th>
-      <th>
-        <button class="btn btn-primary" >Editar</button>
-        <button class="btn btn-danger">Eliminar</button>
-      </th>
+      <td>
+        <a href="#"  class="btn btn-info">View</a>
+        <!-- <a href="#" [routerLink]="['/patrones/', p.id, 'edit']" class="btn btn-primary">Edit</a> -->
+        <button type="button" (click)="remove(p.id)" class="btn btn-danger">Eliminar</button>
+      </td>
     </tr>
 
   </tbody>
