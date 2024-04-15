@@ -1,4 +1,7 @@
-<app-header></app-header>
+@if(!isLoginPage()){
+  <app-header></app-header>
+
+}
 <main class="container">
   <router-outlet></router-outlet>
 </main>

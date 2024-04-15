@@ -1,0 +1,66 @@
+<div class="row justify-content-md-center mt-5">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-4">Registrar</h5>
+        @if(message){
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>Exito!</strong> {{message}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <form>
+          <div class="mb-3">
+            <label for="username" class="form-label">Nombre de usuario
+            </label>
+            <input type="text" class="form-control" id="username" name="username" [(ngModel)]="username" />
+            @if(validationErrors?.username != undefined){
+            <div class="flex flex-col">
+              <small class="text-danger">
+                {{validationErrors.username[0]}}
+              </small>
+            </div>
+            }
+
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">
+              Email address
+            </label>
+            <input type="email" class="form-control" id="email" name="email" required [(ngModel)]="email" />
+
+            @if(validationErrors?.email != undefined){
+              <div class="flex flex-col">
+                <small class="text-danger">
+                  {{validationErrors.email[0]}}
+                </small>
+              </div>
+            }
+
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password
+            </label>
+            <input type="password" class="form-control" id="password" name="password" required [(ngModel)]="password" />
+
+            @if(validationErrors?.password != undefined){
+              <div class="flex flex-col">
+                <small class="text-danger">
+                  {{validationErrors.password[0]}}
+                </small>
+              </div>
+            }
+
+          </div>
+          <div class="d-grid gap-2">
+            <button [disabled]="isSubmitting || (password.length <= 0 || email.length <= 0)" (click)="registerAction()"
+              type="button" class="btn btn-primary btn-block">Register Now</button>
+            <p class="text-center">Have already an account <a [routerLink]="['/login']">Logua aqui</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

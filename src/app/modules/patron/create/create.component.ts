@@ -20,7 +20,7 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      phone: new FormControl('', Validators.required)
+      phone: new FormControl('', [Validators.required])
     });
   }
 
@@ -31,7 +31,7 @@ export class CreateComponent implements OnInit {
   submit(){
     console.log(this.form.value);
     this.service.create(this.form.value).subscribe((res:any) => {
-         console.log('Post created successfully!');
+         console.log('El patron ha sido creado!!');
          this.router.navigateByUrl('patron/index');
     })
   }

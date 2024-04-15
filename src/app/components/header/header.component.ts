@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@data/services/api/auth.service';
+import { UserService } from '@data/services/user.service';
+import { User } from '@models/user';
 
 @Component({
   selector: 'app-header',
@@ -9,24 +12,19 @@ export class HeaderComponent implements OnInit {
 
   appName: string = "Tarea 2.7"
   isAuthenticated: boolean = false;
-  userProfilePic: string | null = null;
+  user: User | null = null;
+  userProfilePic: string | null = "https://github.com/mdo.png";
 
-  constructor() { }
+  constructor(private userService : UserService, private authService : AuthService) { }
 
   ngOnInit(): void {
-    this.isAuthenticated = false;
+
+    this.isAuthenticated = this.userService.isLoggedIn();
     if (this.isAuthenticated) {
-      this.userProfilePic = "khalifa";
+         this.authService.getUser().subscribe(
+          (data: any) => {
+            this.user = data;
+          });
     }
-  }
-
-  login() {
-    this.isAuthenticated = true;
-    this.userProfilePic = "https://github.com/mdo.png";
-  }
-
-  logout() {
-    this.isAuthenticated = false;
-    this.userProfilePic = null;
   }
 }

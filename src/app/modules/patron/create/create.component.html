@@ -11,22 +11,31 @@
               id="name"
               type="text"
               class="form-control">
-          <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger">
-              <div *ngIf="f['name'].errors && f['name'].errors['required']">Nombre is required.</div>
-          </div>
+              @if (f['name'].touched && f['name'].invalid) {
+                <div class="alert alert-danger">
+                  @if(f['name'].errors && f['name'].errors['required']){
+                    <div>Nombre es requerido.</div>
+                  }
+              </div>
+              }
+
       </div>
 
       <div class="form-group">
-          <label for="phone">Body</label>
+          <label for="phone">Telefono</label>
           <input
               formControlName="phone"
               id="phone"
               type="text"
               class="form-control"/>
+              @if (f['phone'].touched && f['phone'].invalid) {
+                <div class="alert alert-danger">
+                  @if(f['phone'].errors && f['phone'].errors['required']){
+                    <div>Telefono es requerido.</div>
+                  }
+              </div>
+              }
 
-          <div *ngIf="f['phone'].touched && f['phone'].invalid" class="alert alert-danger">
-              <div *ngIf="f['phone'].errors && f['phone'].errors['required']">Body is required.</div>
-          </div>
       </div>
 
       <button class="btn btn-success" type="submit" [disabled]="!form.valid">Submit</button>

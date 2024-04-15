@@ -1,6 +1,7 @@
-<a [routerLink]="['/patrones/nuevo']" class="btn btn-success">Añadir Patron</a>
-
-<table class="table table-bordered border-primary">
+@if(isAuthenticated){
+<a [routerLink]="['/patrones/nuevo']" class="btn btn-success btn-sm">Añadir Patron</a>
+}
+<table class="table table-bordered border-primary my-4">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -10,16 +11,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let p of patrons">
-      <th>{{p.id}}</th>
-      <th>{{p.name}}</th>
-      <th>{{p.phone}}</th>
-      <td>
-        <a href="#"  class="btn btn-info">View</a>
-        <!-- <a href="#" [routerLink]="['/patrones/', p.id, 'edit']" class="btn btn-primary">Edit</a> -->
-        <button type="button" (click)="remove(p.id)" class="btn btn-danger">Eliminar</button>
+    @for (p of patrons; track p.id){
+      <tr >
+        <th>{{p.id}}</th>
+        <th>{{p.name}}</th>
+        <th>{{p.phone}}</th>
+        <td>
+          @if(isAuthenticated){
+            <button type="button" (click)="remove(p.id)" class="btn btn-danger btn-sm">Eliminar</button>
+          }
+        <button type="button" class="btn btn-warning btn-sm">Editar</button>
       </td>
     </tr>
-
+}
   </tbody>
 </table>

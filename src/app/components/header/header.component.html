@@ -1,43 +1,45 @@
-<!-- header.component.html -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand" href="#">{{appName}}</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Acerca de</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Servicios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contacto</a>
-        </li>
-      </ul>
-    </div>
-    <div class="navbar-nav ms-auto">
-      <ng-container *ngIf="!isAuthenticated; else authenticatedUser">
-        <button class="btn btn-outline-primary me-2" (click)="login()">Iniciar Sesión</button>
-        <button class="btn btn-primary" disabled>Registar</button>
-      </ng-container>
-      <ng-template #authenticatedUser>
-        <div class="dropdown">
-          <button class="btn btn-outline-primary dropdown-toggle me-2" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <img *ngIf="userProfilePic" [src]="userProfilePic" alt="Profile Pic" width="30" height="30" class="rounded-circle me-1">
-            Perfil
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
-            <li><a class="dropdown-item" href="#" (click)="logout()">Cerrar Sesión</a></li>
+
+<nav class="navbar navbar-expand-lg navbar-light py-4">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="https://library.livecanvas.com/sections/">
+          <img class="img-fluid" src="favicon.ico" alt="" width="48px" height="48px">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav_lc" aria-controls="nav_lc" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav_lc">
+          <ul class="d-none d-lg-flex navbar-nav mx-auto my-3 my-lg-0 position-absolute top-50 start-50 translate-middle">
+              <li class="nav-item me-4"><a class="nav-link" href="#" [routerLink]="['/patrones']">Patrones</a></li>
+              @if(isAuthenticated){
+              <li class="nav-item me-4"><a class="nav-link" href="#">Barcos</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Salidas</a></li>
+              }
           </ul>
-        </div>
-      </ng-template>
-    </div>
+          <div class="ms-lg-auto">
+
+
+
+            @if(!isAuthenticated){
+              <a [routerLink]="['/login']" class="btn btn-outline-primary me-2 btn-sm" href="#">Iniciar Sesión</a>
+              <a [routerLink]="['/registrar']" class="btn btn-primary btn-sm" href="#">Registar</a>
+            }@else{
+              <div class="dropdown">
+                <button class="btn btn-outline-primary dropdown-toggle me-2" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  @if(userProfilePic){
+                    <img [src]="userProfilePic" alt="Profile Pic" width="30" height="30" class="rounded-circle me-1">
+                  }
+                  Perfil
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                  <li><a class="dropdown-item" href="#" [routerLink]="['/logout']">Cerrar Sesión</a></li>
+                </ul>
+              </div>
+            }
+
+          </div>
+      </div>
   </div>
 </nav>
+
+

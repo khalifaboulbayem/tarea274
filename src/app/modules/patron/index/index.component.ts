@@ -1,7 +1,6 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { PatronService } from '@data/services/api/patron.service';
+import { UserService } from '@data/services/user.service';
 import { Patron } from '@models/patron';
 
 @Component({
@@ -11,10 +10,12 @@ import { Patron } from '@models/patron';
 })
 export class IndexComponent implements OnInit {
 
+  isAuthenticated: boolean = false;
   patrons: Patron[] = [];
-  constructor(private patronService: PatronService) { }
+  constructor(private patronService: PatronService, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.isAuthenticated = this.userService.isLoggedIn();
     this.patronService.getAll().subscribe(
       (data: Patron[]) => this.patrons = data,
       error => console.log(error)
